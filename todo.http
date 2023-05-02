@@ -1,0 +1,32 @@
+GET https://localhost:7006/ HTTP/1.1
+
+###
+GET https://localhost:7006/todoitems HTTP/1.1
+
+###
+GET https://localhost:7006/todoitems/1 HTTP/1.1
+
+###
+GET https://localhost:7006/todoitems/done HTTP/1.1
+
+###
+PUT https://localhost:7006/todoitems/1 HTTP/1.1
+Content-Type: application/json
+
+{   
+    "id": 1,
+    "name": "get milk, eggs, and beef sausage from the market",
+    "isDone": false  
+}
+
+###
+POST https://localhost:7006/todoitems HTTP/1.1
+Content-Type:  application/json
+
+{
+    "name": "revise Azure fundamentals",
+    "isdone": false
+}
+
+###
+DELETE https://localhost:7006/todoitems/5 HTTP/1.1
