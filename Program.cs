@@ -21,11 +21,8 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", $"{builder.Environment.ApplicationName}-v1"));
-}
+app.UseSwagger();
+app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", $"{builder.Environment.ApplicationName}-v1"));
 
 app.MapGet("/", () => $"Hello {Environment.UserName}").ExcludeFromDescription();
 
@@ -34,7 +31,7 @@ app.MapGet("/todoitems", async (TodoDb db) => await db.Todos.ToListAsync()).With
 app.MapGet("/todoitems/done", async (TodoDb db) => await db.Todos.Where(t => t.IsDone == true).ToListAsync()).WithName("GetDoneTodos");
 
 app.MapGet("/todoitems/{id}", async (int id, TodoDb db) =>
-    await db.Todos.FindAsync(id)is Todo todo ?
+    await db.Todos.FindAsync(id) is Todo todo ?
     Results.Ok(todo) : Results.NotFound())
     .WithName("GetTodoById");
 
