@@ -24,7 +24,7 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", $"{builder.Environment.ApplicationName}-v1"));
 
-app.MapGet("/", () => $"Hello {Environment.UserName}").ExcludeFromDescription();
+app.MapGet("/", () => $"Hello {Environment.UserName}. Visit the /todoitems endpoint to play with the api for a bit!").ExcludeFromDescription();
 
 app.MapGet("/todoitems", async (TodoDb db) => await db.Todos.ToListAsync()).WithName("GetTodoItems");
 
